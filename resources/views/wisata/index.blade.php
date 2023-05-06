@@ -4,6 +4,7 @@
 <h3 class="mb-3">Data Wisata</h3>
 
 <div class="card">
+    @include('sweetalert::alert')
     <div class="card-header pb-0 mt-3 mb-3">
         <a href="{{ route('wisata.create') }}" class="btn btn-primary" style="float: center">
             Tambah Data
@@ -28,7 +29,7 @@
                             <td>{{ $data->nama }}</td>
                             <td>{{ $data->alamat }}</td>
                             <td>
-                                <img src="{{ $data->image() }}" style="width: 100px; height:100px;" alt="">
+                                <img src="{{ $data->image() }}" style="width: 150px; height:100px;" alt="">
                             </td>
                             <td>
                                 <form action="{{ route('wisata.destroy', $data->id) }}" method="POST">

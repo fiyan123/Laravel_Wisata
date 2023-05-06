@@ -29,13 +29,16 @@
 
                 <div class="mb-3">
                     <label class="form-label">Foto</label>
-                    <input type="file" class="form-control  @error('foto') is-invalid @enderror" name="foto">
+                    <img class="img-preview img-fluid mb-3 col-sm-5">
+                    <input type="file" class="form-control  @error('foto') is-invalid @enderror" name="foto"
+                        onchange="previewImage()" id="image">
                     @error('foto')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                     @enderror
                 </div>
+
                 <div class="mb-3" align="right">
                     <button class="btn btn-primary" type="submit">Save</button>
                     <a href="{{ route('wisata.index') }}" class="btn btn-secondary">Back</a>
@@ -45,4 +48,21 @@
     </div>
 </div>
 
+<script>
+    // Query menampilkan image inputan
+    function previewImage() {
+        const image = document.querySelector('#image');
+        const imgPreview = document.querySelector('.img-preview');
+
+        imgPreview.style.display = 'block';
+
+        const oFReader = new FileReader();
+
+        oFReader.readAsDataURL(image.files[0]);
+        oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result;
+        }
+    }
+
+</script>
 @endsection
